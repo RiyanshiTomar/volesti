@@ -120,6 +120,18 @@ struct Walk
         p = _p;
     }
 
+    template
+    <
+        typename GenericPolytope
+    >
+    inline void apply(GenericPolytope const& P,
+                      Point& p,
+                      unsigned int const& walk_length,
+                      RandomNumberGenerator &rng)
+    {
+        apply(P, p, NT(0), walk_length, rng);
+    }
+
 
     template
     <
@@ -231,6 +243,17 @@ private :
             P.compute_reflection(_v, _p, pbpair.second);
             it++;
         }
+    }
+
+    template
+    <
+        typename GenericPolytope
+    >
+    inline void initialize(GenericPolytope const& P,
+                           Point const& p,
+                           RandomNumberGenerator &rng)
+    {
+        initialize(P, p, NT(0), rng);
     }
 
     template
